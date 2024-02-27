@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .input-group input[type="text"],
+        .input-group input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .input-group input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .input-group input[type="submit"]:hover {
+            background-color: #444;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <?php if (isset($_GET['error'])): ?>
+            <div class="error">Invalid username or password</div>
+        <?php endif; ?>
+        <div class="header">
+            <h1>Login</h1>
+            <p>Enter your username and password to log in</p>
+        </div>
+        <form action="check-login.php" method="post" id="loginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+                <div class="error" id="usernameError"></div>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+                <div class="error" id="passwordError"></div>
+            </div>
+            <div class="input-group">
+                <input type="submit" value="Log in">
+            </div>
+        </form>
+    </div>
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+        const usernameError = document.getElementById("usernameError");
+        const passwordError = document.getElementById("passwordError");
+
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            let isValid = true;
+
+            // Clear previous error messages
+            usernameError.textContent = "";
+            passwordError.textContent = "";
+
+            // Validate username input
+            if // Validate username input
+             (usernameInput.value.trim() === "") {
+                usernameError.textContent = "Username cannot be empty";
+                isValid = false;
+            }
+
+            // Validate password input
+            if (passwordInput.value.trim() === "") {
+                passwordError.textContent = "Password cannot be empty";
+                isValid = false;
+            }
+
+            // If form is valid, submit the form
+            if (isValid) {
+                loginForm.submit();
+            }
+        });
+    </script>
+</body>
+</html>
